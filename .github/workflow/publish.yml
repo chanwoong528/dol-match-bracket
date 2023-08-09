@@ -1,0 +1,38 @@
+name: Versioning & Npm Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      # 깃헙 액션 봇으로 npm version 올린 후 커밋
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          npm version patch
+      # 올라간 버전을 원격 저장소에 커밋
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          tags: true
+          branch: ${{ github.ref }}
+      # 빌드 후 npm에 배포.
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Npm Publish
+        run: |
+          npm ci
+          npm run build
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}

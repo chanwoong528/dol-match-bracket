@@ -3,7 +3,7 @@ name: Versioning & Npm Publish
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   update-publish:

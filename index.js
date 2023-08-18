@@ -65,22 +65,35 @@ let arr = [{
   next: null
 }]
 
-function findChildren(root, depth, parentEle) {
+function findChildren(root, depth, parentEle,) {
   let count = 0;
-  parentEle.innerHTML = `<p>${root.school1} : ${root.school2}</p>`
+  const contentDiv = document.createElement("div");
+  contentDiv.classList.add("match-content")
+  const teamOneP = document.createElement("p")
+  teamOneP.innerHTML = root.school1
+  const teamTwoP = document.createElement("p")
+  teamTwoP.innerHTML = root.school2;
+  contentDiv.appendChild(teamOneP)
+  contentDiv.appendChild(teamTwoP)
+  parentEle.appendChild(contentDiv)
+
+  const subMatchDiv = document.createElement("div") //52, 60
+  subMatchDiv.classList.add("sub-match")
   for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i].next === root.id) {
-      let con = document.createElement("div") //52, 60
-      con.classList.add(`depth-${depth}`)
-      parentEle.appendChild(con);
+      let con = document.createElement("div");
+      con.classList.add(`outer-depth-${depth}`)
+      subMatchDiv.appendChild(con)
+
       findChildren(arr[i], depth + 1, con);
       count++;
       if (count > 1) {
         break;
       }
     }
+    parentEle.appendChild(subMatchDiv);
   }
 }
 
-let rootCon = document.querySelector(".depth-0")
+let rootCon = document.querySelector(".outer-depth-0")
 findChildren(arr[arr.length - 1], 1, rootCon);

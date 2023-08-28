@@ -2,7 +2,7 @@
   "name": "dol-match-bracket",
   "version": "0.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bracket.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

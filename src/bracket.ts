@@ -6,6 +6,18 @@ messageMap.set('noFinal', 'Final game not found. The data needs one element with
 messageMap.set('overFinal', 'Only one element is allowed to have a null value of "next".');
 messageMap.set('overId', 'There are more than two items with the same "next" value. -');
 
+/**
+ * @param defaultConfig 기본옵션
+ * @param defaultConfig.con 기본옵션
+ * @param defaultConfig.containerClass 컨테이너의 기본 클래스
+ * @param defaultConfig.matchClass 각 매치별 래퍼
+ * @param defaultConfig.mainGameClass 매치의 래퍼
+ * @param defaultConfig.subGameClass 매치의 서브 매치그루핑용
+ * @param defaultConfig.hasByeClass 부전승 경기가 있을경우 사용할 클래스
+ * @param defaultConfig.itemTemplate 각 매치의 기본템플릿 {{ }} 를 사용하여 데이터의 변수 사용
+ * @param defaultConfig.leftClass 서브 매치의 왼쪽 구분
+ * @param defaultConfig.rightClass 서브 매치의 오른쪽 구분
+ * */
 const defaultConfig = {
   containerClass: 'dol-bracket',
   matchClass: 'dol-bracket-match',
@@ -17,6 +29,12 @@ const defaultConfig = {
   rightClass: 'dol-bracket-right',
 };
 
+/**
+ * @param {object} match current match data
+ * @param {gameObject[]} data all match data
+ * @param {object} options
+ * @param {-1|1} [pos] direction, -1: left, 1:right
+ * */
 function makeMatchFragment(match, data, options, pos) {
   const groupEle = document.createElement('div');
   const gameTpl = options.itemTemplate.replace(/{{\s*([^}]*)\s*}}/g, (_, key) => `${match[key]}`);
@@ -28,6 +46,7 @@ function makeMatchFragment(match, data, options, pos) {
 
   groupEle.classList.add(options.matchClass);
 
+  // 매치의 왼쪽 오른쪽 구분(옵션)
   if (pos) {
     groupEle.classList.add(pos < 0 ? options.leftClass : options.rightClass);
   }
@@ -42,6 +61,7 @@ function makeMatchFragment(match, data, options, pos) {
     if (subGames.length === 1) {
       subGroupEle.classList.add(options.hasByeClass);
     } else {
+      // 왼쪽 오른쪽 구분을 위해 정렬(옵션), pos값이 없으면 그대로
       subGames.sort(function (a, b) {
         if (a.pos === 'left' || b.pos === 'right') {
           return -1;
@@ -67,9 +87,9 @@ function makeMatchFragment(match, data, options, pos) {
 }
 
 /**
- * @param dateArr @type {Set<string>}
- * @param {number} year
- * @param {singleGame[]} gameData
+ * @param {string|node element} selector
+ * @param {gameObject[]} data all match data
+ * @param {object} confit user defined options
  *
  * @description Given date, with year, get Days and insert into DOM on [Schedule page #result]
  * */
@@ -90,6 +110,7 @@ function makeBracket(selector, data, config) {
     throw messageMap.get('container');
   }
 
+  // 최종 경기가 하나만 있어야 함
   if (!finalGame.length) {
     throw messageMap.get('noFinal');
   } else if (finalGame.length > 1) {
@@ -103,6 +124,7 @@ function makeBracket(selector, data, config) {
   container.append(fragment);
 }
 
+// 모듈화
 // https://github.com/umdjs/umd/blob/master/templates/returnExports.js
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {

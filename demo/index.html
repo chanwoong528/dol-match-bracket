@@ -4,12 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../dist/bracket.default.css" />
   </head>
   <body>
-    <script type="module">
-      import { makeBracket } from "../dist/bracket.min.js";
+    <div id="dol-bracket"></div>
+    <script src="../dist/bracket.min.js"></script>
+    <script>
+      let arr = [
+        {
+          id: 1,
+          date: 8.18,
+          stadium: '목동',
+          time: '9:00',
+          school1: 'a',
+          score1: 9,
+          score2: 4,
+          school2: 'b',
+          state: '경기종료',
+          live: '진행',
+          next: 3,
+        },
+        {
+          id: 2,
+          date: 8.18,
+          stadium: '목동',
+          time: '11:30',
+          school1: 'c',
+          score1: 10,
+          score2: 5,
+          school2: 'd',
+          state: '경기종료',
+          live: '진행',
+          next: 4,
+        },
+        {
+          id: 3,
+          date: 8.18,
+          stadium: '목동',
+          time: '16:30',
+          school1: 'e',
+          score1: 13,
+          score2: 2,
+          school2: '1',
+          state: '경기전',
+          live: '진행',
+          next: 5,
+        },
+        {
+          id: 4,
+          date: 8.18,
+          stadium: '목동',
+          time: '16:30',
+          school1: 'f',
+          score1: 13,
+          score2: 2,
+          school2: '2',
+          state: '경기전',
+          live: '진행',
+          next: 5,
+        },
+        {
+          id: 5,
+          date: 8.18,
+          stadium: '목동',
+          time: '16:30',
+          school1: '3',
+          score1: 13,
+          score2: 2,
+          school2: '4',
+          state: '경기전',
+          live: '진행',
+          next: null,
+        },
+      ];
 
-      console.log(makeBracket);
+      MakeDolBracket('#dol-bracket', arr, {});
     </script>
   </body>
 </html>

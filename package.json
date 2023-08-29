@@ -1,10 +1,12 @@
 {
   "name": "dol-match-bracket",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/bracket.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,15 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "babel-core": "^6.26.3",
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-webserver": "^0.9.1",
+    "sass": "^1.66.1"
   }
 }

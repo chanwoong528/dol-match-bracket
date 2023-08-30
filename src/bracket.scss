@@ -1,7 +1,50 @@
-.dol-bracket {display: flex; justify-content: center;}
-.dol-bracket-main {display: flex; justify-content: center; text-align: center; white-space: nowrap;}
-.dol-bracket-sub {position: relative; display: flex;}
-.dol-bracket-sub:before {content: ""; position: absolute; left: 50%; top: -10px; width: 1px; background-color: #c9c9c9; height: 10px;}
-.dol-bracket-sub:not(.dol-bracket-bye):after {content: ""; position: absolute; z-index: -1; width: 50%; height: 10px; top: 0; left: 25%; border: 1px solid #c9c9c9; border-width: 1px 1px 0 1px;}
-.dol-bracket-bye:before {height: 20px;}
-.dol-bracket-item {margin: 10px 20px; padding: 8px 16px; border: 1px solid #bebebe;}
+.dol-bracket{
+  display:flex;
+  justify-content:center;
+  
+  &-main{
+    display:flex;
+    justify-content:center;
+    text-align:center;
+    white-space:nowrap;
+  }
+  
+  &-sub{
+      position:relative;
+      display:flex;
+
+      $borderColor:red;
+
+      &:before{
+        content: "";
+        position:absolute;
+        left:50%;
+        top:-10px;
+        width:1px;
+        background-color:$borderColor;
+        height:10px;
+      }
+
+      &:not(.dol-bracket-bye):after{
+        content: "";
+        position:absolute;
+        z-index:-1;
+        width:50%;
+        height:10px;
+        top:0;
+        left:25%;
+        border:1px solid $borderColor;
+        border-width:1px 1px 0 1px
+      }
+  }
+
+  &-bye:before{
+    height:20px;
+  }
+  
+  &-item{
+    padding:8px 16px;
+    margin:10px 20px;
+    border: 1px solid #bebebe;
+  }
+}

@@ -1,7 +1,10 @@
 .dol-bracket{
   display:flex;
   justify-content:center;
-  
+
+  $borderColor:red;
+  $content-spacing:10px;
+
   &-main{
     display:flex;
     justify-content:center;
@@ -13,16 +16,15 @@
       position:relative;
       display:flex;
 
-      $borderColor:red;
 
       &:before{
         content: "";
         position:absolute;
         left:50%;
-        top:-10px;
+        top:calc(-1*$content-spacing);
         width:1px;
         background-color:$borderColor;
-        height:10px;
+        height:$content-spacing;
       }
 
       &:not(.dol-bracket-bye):after{
@@ -30,7 +32,7 @@
         position:absolute;
         z-index:-1;
         width:50%;
-        height:10px;
+        height:$content-spacing;
         top:0;
         left:25%;
         border:1px solid $borderColor;
@@ -39,12 +41,53 @@
   }
 
   &-bye:before{
-    height:20px;
+    height:calc(2*$content-spacing);
   }
   
   &-item{
     padding:8px 16px;
-    margin:10px 20px;
+    margin:$content-spacing 20px;
     border: 1px solid #bebebe;
+  }
+  
+  &.match-type-right{
+    .dol-bracket-match{
+      display:flex;
+      align-items: center;
+        
+      $display-type:block;
+      $content-spacing:10px;
+
+      .dol-bracket-main{
+        display:$display-type;
+      }
+      .dol-bracket-sub{
+        display:$display-type;
+
+        &:before{
+          left:calc(-1*$content-spacing);
+          top:50%;
+          width:$content-spacing;
+          height:1px;
+        }
+  
+        &:not(.dol-bracket-bye):after{
+          height: 50%;
+          width:$content-spacing;
+          top: 25%;
+          left: 0;
+          border-width: 1px 0 1px 1px;
+        }
+      }
+      
+      .dol-bracket-bye:before{
+        height:1px;
+        width:calc(2*$content-spacing);
+      }
+
+      .dol-bracket-item{
+        margin:20px $content-spacing;
+      }
+    }
   }
 }

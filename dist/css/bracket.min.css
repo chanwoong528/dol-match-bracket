@@ -40,3 +40,33 @@
   margin: 10px 20px;
   border: 1px solid #bebebe;
 }
+.dol-bracket.match-type-right .dol-bracket-match {
+  display: flex;
+  align-items: center;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-main {
+  display: block;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub {
+  display: block;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:before {
+  left: -10px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
+  height: 50%;
+  width: 10px;
+  top: 25%;
+  left: 0;
+  border-width: 1px 0 1px 1px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-bye:before {
+  height: 1px;
+  width: 20px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-item {
+  margin: 20px 10px;
+}

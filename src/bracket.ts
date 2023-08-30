@@ -11,6 +11,7 @@ messageMap.set('overId', 'There are more than two items with the same "next" val
  * @param defaultConfig.con 기본옵션
  * @param defaultConfig.containerClass 컨테이너의 기본 클래스
  * @param defaultConfig.matchClass 각 매치별 래퍼
+ * @param defaultConfig.matchClass 매치의 타입
  * @param defaultConfig.mainGameClass 매치의 래퍼
  * @param defaultConfig.subGameClass 매치의 서브 매치그루핑용
  * @param defaultConfig.hasByeClass 부전승 경기가 있을경우 사용할 클래스
@@ -21,6 +22,7 @@ messageMap.set('overId', 'There are more than two items with the same "next" val
 const defaultConfig = {
   containerClass: 'dol-bracket',
   matchClass: 'dol-bracket-match',
+  matchType: 'match-type-right',
   mainGameClass: 'dol-bracket-main',
   subGameClass: 'dol-bracket-sub',
   hasByeClass: 'dol-bracket-bye',
@@ -121,6 +123,11 @@ function makeBracket(selector, data, config) {
   fragment = makeMatchFragment(finalGame[0], data, options);
 
   container.classList.add(options.containerClass);
+
+  if(options.matchType){
+    container.classList.add(options.matchType);
+  }
+
   container.append(fragment);
 }
 

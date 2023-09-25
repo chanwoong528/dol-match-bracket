@@ -1,10 +1,10 @@
 {
   "name": "dol-match-bracket",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/bracket.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx playwright test",
     "dev": "gulp dev",
     "build": "gulp build"
   },
@@ -15,7 +15,8 @@
   "keywords": [
     "match-bracket",
     "bracket",
-    "tournament-bracket"
+    "tournament-bracket",
+    "dol-match-bracket"
   ],
   "author": "Chanwoong",
   "license": "ISC",
@@ -24,6 +25,8 @@
   },
   "homepage": "https://github.com/chanwoong528/dol-match-bracket#readme",
   "devDependencies": {
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^20.6.5",
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2"

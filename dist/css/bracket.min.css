@@ -2,29 +2,25 @@
   display: flex;
   justify-content: center;
 }
-
 .dol-bracket-main {
   display: flex;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
 }
-
 .dol-bracket-sub {
   position: relative;
   display: flex;
 }
-
 .dol-bracket-sub:before {
   content: "";
   position: absolute;
   left: 50%;
   top: -10px;
   width: 1px;
-  background-color: #c9c9c9;
+  background-color: red;
   height: 10px;
 }
-
 .dol-bracket-sub:not(.dol-bracket-bye):after {
   content: "";
   position: absolute;
@@ -33,16 +29,44 @@
   height: 10px;
   top: 0;
   left: 25%;
-  border: 1px solid #c9c9c9;
+  border: 1px solid red;
   border-width: 1px 1px 0 1px;
 }
-
 .dol-bracket-bye:before {
   height: 20px;
 }
-
 .dol-bracket-item {
-  margin: 10px 20px;
   padding: 8px 16px;
+  margin: 10px 20px;
   border: 1px solid #bebebe;
+}
+.dol-bracket.match-type-right .dol-bracket-match {
+  display: flex;
+  align-items: center;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-main {
+  display: block;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub {
+  display: block;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:before {
+  left: -10px;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
+  height: 50%;
+  width: 10px;
+  top: 25%;
+  left: 0;
+  border-width: 1px 0 1px 1px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-bye:before {
+  height: 1px;
+  width: 20px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-item {
+  margin: 20px 10px;
 }

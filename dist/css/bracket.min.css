@@ -36,37 +36,63 @@
   height: 20px;
 }
 .dol-bracket-item {
+  position: relative;
   padding: 8px 16px;
   margin: 10px 20px;
   border: 1px solid #bebebe;
+  background: #fff;
 }
-.dol-bracket.match-type-right .dol-bracket-match {
+.dol-bracket.match-type-top .dol-bracket-match .dol-bracket-sub:before {
+  top: initial;
+  bottom: -10px;
+  width: 1px;
+}
+.dol-bracket.match-type-top .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
+  height: 10px;
+  top: initial;
+  bottom: 0;
+  border-width: 0 1px 1px 1px;
+}
+.dol-bracket.match-type-right .dol-bracket-match, .dol-bracket.match-type-left .dol-bracket-match {
   display: flex;
   align-items: center;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-main {
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-main, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-main {
   display: block;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub {
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-sub {
   display: block;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:before {
-  left: -10px;
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:before, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-sub:before {
   top: 50%;
   width: 10px;
   height: 1px;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
   height: 50%;
-  width: 10px;
+  width: 50px;
   top: 25%;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-bye:before, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-bye:before {
+  height: 1px;
+  width: 50px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-item, .dol-bracket.match-type-left .dol-bracket-match .dol-bracket-item {
+  margin: 20px 10px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:before {
+  left: -10px;
+}
+.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
   left: 0;
   border-width: 1px 0 1px 1px;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-bye:before {
-  height: 1px;
-  width: 20px;
+.dol-bracket.match-type-left .dol-bracket-match .dol-bracket-sub:before {
+  left: initial;
+  right: -10px;
 }
-.dol-bracket.match-type-right .dol-bracket-match .dol-bracket-item {
-  margin: 20px 10px;
+.dol-bracket.match-type-left .dol-bracket-match .dol-bracket-sub:not(.dol-bracket-bye):after {
+  left: initial;
+  right: 0;
+  border-width: 1px 1px 1px 0;
 }

@@ -11,7 +11,7 @@ messageMap.set('overId', 'There are more than two items with the same "next" val
  * @param defaultConfig.con 기본옵션
  * @param defaultConfig.containerClass 컨테이너의 기본 클래스
  * @param defaultConfig.matchClass 각 매치별 래퍼
- * @param defaultConfig.matchClass 매치의 타입
+ * @param defaultConfig.matchType 매치의 타입 - match-type-right || match-type-left || match-type-top
  * @param defaultConfig.mainGameClass 매치의 래퍼
  * @param defaultConfig.subGameClass 매치의 서브 매치그루핑용
  * @param defaultConfig.hasByeClass 부전승 경기가 있을경우 사용할 클래스
@@ -22,7 +22,9 @@ messageMap.set('overId', 'There are more than two items with the same "next" val
 const defaultConfig = {
   containerClass: 'dol-bracket',
   matchClass: 'dol-bracket-match',
-  matchType: 'match-type-right',
+  // matchType: 'match-type-right',
+  // matchType: 'match-type-left',
+  // matchType: 'match-type-top',
   mainGameClass: 'dol-bracket-main',
   subGameClass: 'dol-bracket-sub',
   hasByeClass: 'dol-bracket-bye',
@@ -75,14 +77,25 @@ function makeMatchFragment(match, data, options, pos) {
       });
     }
 
-    if (subGames[0]) {
-      subGroupEle.append(makeMatchFragment(subGames[0], data, options, -1));
+    if (options.matchType === "match-type-top" || options.matchType === "match-type-left"){
+      if (subGames[0]) {
+        subGroupEle.prepend(makeMatchFragment(subGames[0], data, options, -1));
+      }
+      if (subGames[1]) {
+        subGroupEle.prepend(makeMatchFragment(subGames[1], data, options, 1));
+      }
+  
+      groupEle.prepend(subGroupEle);
+    }else{
+      if (subGames[0]) {
+        subGroupEle.append(makeMatchFragment(subGames[0], data, options, -1));
+      }
+      if (subGames[1]) {
+        subGroupEle.append(makeMatchFragment(subGames[1], data, options, 1));
+      }
+  
+      groupEle.append(subGroupEle);
     }
-    if (subGames[1]) {
-      subGroupEle.append(makeMatchFragment(subGames[1], data, options, 1));
-    }
-
-    groupEle.append(subGroupEle);
   }
 
   return groupEle;
